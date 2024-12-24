@@ -15,7 +15,6 @@ const education = [
     points: [
       'Pursuing a Bachelor’s Degree in Computer Science Engineering.',
       'Participating in hackathons and coding competitions.',
-      'Developed a hotel booking application as part of a project presentation.',
       'Actively involved in coding, web design, and technical presentations.'
     ]
   },
