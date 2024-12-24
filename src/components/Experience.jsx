@@ -5,14 +5,13 @@ import Footer from './Footer';
 import skcet from '../components/skcet.jpeg'
 import bmhss from '../components/bmhss.jpeg'
 
-// Updated education data
 const education = [
   {
     role: 'B.E. Computer Science',
     company: 'Sri Krishna College of Engineering and Technology',
     duration: '2023 - Present',
-    logo: skcet, // Add the path to your college logo
-    url: 'https://www.skcet.ac.in', // Add your college's website URL
+    logo: skcet,
+    url: 'https://www.skcet.ac.in',
     points: [
       'Pursuing a Bachelor’s Degree in Computer Science Engineering.',
       'Participating in hackathons and coding competitions.',
@@ -24,8 +23,8 @@ const education = [
     role: 'Higher Secondary Education',
     company: 'Bharathi Matric Higher Secondary School',
     duration: '2010 - 2023',
-    logo: bmhss, // Add the path to your school logo
-    url: 'https://bharathimatricschool.in/home', // You can leave this empty or add any relevant link
+    logo: bmhss,
+    url: 'https://bharathimatricschool.in/home', 
     points: [
       'Completed higher secondary education with a focus on Science stream.',
       'Developed a passion for coding and technology during school projects.',

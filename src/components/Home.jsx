@@ -6,7 +6,6 @@ const Home = () => {
   const ref = useRef(0);
   const [text, setText] = useState('');
   
-  // Update name to display your name letter by letter
   const updatedName = ['V', 'i', 'j', 'a', 'y', 'S', 'y', 'a', 'm', ' ', 'B', 'K'];
 
   useEffect(() => {
@@ -15,18 +14,17 @@ const Home = () => {
         ref.current++;
         setText(prevText => prevText + updatedName[ref.current - 1]);
       }
-    }, 300); // Make it faster
+    }, 300);
     return () => clearInterval(interval);
   }, [text]);
 
   return (
     <div className='relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 w-screen h-screen'>
       <ul className="circles">
-        {/* Add new animations or keep the same */}
         <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
       </ul>
       <div className='hero relative flex flex-col justify-center items-center text-white h-full'>
-        {/* Animated introduction */}
+        
         <motion.div 
           className='backdrop-blur-sm rounded-3xl p-6'
           initial={{ opacity: 0, y: -50 }}

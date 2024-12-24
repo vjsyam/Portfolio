@@ -6,7 +6,7 @@ import write from '../components/writepage.jpeg'
 const ProjectCard = ({ image, title, description, git, technologies }) => {
     return (
         <div className="max-w-sm sm:max-w-sm md:max-w-sm bg-gray-900 border border-neutral-100 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href={git} target="_blank" rel="noreferrer"> {/* Updated this line */}
+            <a href={git} target="_blank" rel="noreferrer">
                 <img className="w-full rounded-t-lg h-auto object-cover" src={image} alt={title} />
             </a>
             <div className="p-4 sm:p-6">
@@ -50,7 +50,6 @@ const Projects = () => {
     );
 };
 
-// Updated project array with correct image references
 export const project = [
     {
         title: 'Hotel Booking Application',
