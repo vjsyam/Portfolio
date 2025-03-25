@@ -71,7 +71,15 @@ export const project = [
         image: 'https://viso.ai/wp-content/smush-webp/2023/01/smart-city-computer-vision-yolov7-deep-learning-1060x596.jpg.webp',
         git: 'https://github.com/vjsyam/Object_DetectionAI',
         technologies: ['Python','Speaking']
+    },
+    {
+        title: 'Transparent Charity Platform',
+        description: 'Built a decentralized donation platform with React, Flask, and Ethereum (Truffle & Ganache) to ensure secure and transparent transactions. The platform allows users to donate to charities and track their donations on the blockchain.',
+        // image: write,
+        git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
+        technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain']
     }
+    
 ];
 
 export default Projects;
