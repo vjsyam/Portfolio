@@ -2,6 +2,9 @@ import React from "react";
 import Footer from './Footer';
 import hotel from '../components/hotelhomepage.jpeg'
 import write from '../components/writepage.jpeg'
+import electro from '../components/electro.png'
+import obj from '../components/obj.jpg'
+import tcp from '../components/tcp.png'
 
 const ProjectCard = ({ image, title, description, git, technologies }) => {
     return (
@@ -68,21 +71,21 @@ export const project = [
     {
         title: 'Object Detection',
         description: 'Delivered presentations on various topics including web development, React, and design principles. These presentations were aimed at sharing knowledge and insights with peers and industry professionals.',
-        image: 'https://viso.ai/wp-content/smush-webp/2023/01/smart-city-computer-vision-yolov7-deep-learning-1060x596.jpg.webp',
+        image: obj,
         git: 'https://github.com/vjsyam/Object_DetectionAI',
         technologies: ['Python','Speaking']
     },
     {
         title: 'Transparent Charity Platform',
         description: 'Built a decentralized donation platform with React, Flask, and Ethereum (Truffle & Ganache) to ensure secure and transparent transactions. The platform allows users to donate to charities and track their donations on the blockchain.',
-        // image: write,
+        image: tcp,
         git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
         technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain']
     },
     {
         title: 'Electricity Peak Demand Prediction Using AI',
         description: 'Developed a machine learning model using Random Forest to predict electricity peak demand,Analyzed historical power consumption data to enhance forecasting accuracy.',
-        // image: write,
+        image: electro,
         // git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
         technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain','Random Forest','Machine Learning']
     }
