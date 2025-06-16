@@ -78,6 +78,13 @@ export const project = [
         // image: write,
         git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
         technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain']
+    },
+    {
+        title: 'Electricity Peak Demand Prediction Using AI',
+        description: 'Developed a machine learning model using Random Forest to predict electricity peak demand,Analyzed historical power consumption data to enhance forecasting accuracy.',
+        // image: write,
+        // git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
+        technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain','Random Forest','Machine Learning']
     }
     
 ];
