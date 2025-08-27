@@ -34,10 +34,10 @@ const education = [
 
 const Experience = () => {
   return (
-    <div className='experience bg-black w-screen text-white pt-4 pt-16 overflow-x-hidden' id='experience'>
-      <div className='pt-12 sm:px-16'>
-        <p className='font-light'>MY JOURNEY SO FAR.</p>
-        <h2 className='text-4xl sm:text-5xl font-extrabold mt-2'>Education Journey.</h2>
+    <div className='experience bg-black w-screen min-h-screen text-white pt-4 pt-16 overflow-x-hidden' id='experience'>
+      <div className='pt-14 sm:px-16 px-4'>
+        <p className='font-light text-white/70 text-center sm:text-left'>MY JOURNEY SO FAR.</p>
+        <h2 className='text-4xl sm:text-5xl font-extrabold mt-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-rose-300 to-pink-400 text-center sm:text-left'>Education Journey</h2>
       </div>
       <VerticalTimeline className='mt-9'>
         {education.map((edu) => (
@@ -49,7 +49,7 @@ const Experience = () => {
             date={edu.duration}
             iconStyle={{ background: '#fff' }}
             icon={
-              <a className='flex justify-center items-center w-full h-full' href={edu.url} target='_blank'>
+              <a className='flex justify-center items-center w-full h-full' href={edu.url} target='_blank' rel='noreferrer'>
                 <img
                   src={edu.logo}
                   alt={edu.company}
@@ -81,7 +81,9 @@ const Experience = () => {
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
-      <Footer />
+      <div className='pb-8'>
+        <Footer />
+      </div>
     </div>
   );
 }

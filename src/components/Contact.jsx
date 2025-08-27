@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { EMAIL_JS_SERVICE_ID, EMAIL_JS_TEMPLATE_ID, EMAIL_JS_PUBLIC_KEY } from "../constants";
+import { EMAIL_JS_SERVICE_ID, EMAIL_JS_TEMPLATE_ID, EMAIL_JS_PUBLIC_KEY, FORMSPREE_FORM_ID } from "../constants";
 import Footer from "./Footer";
 
 const Contact = () => {
@@ -40,15 +40,50 @@ const Contact = () => {
 			return;
 		}
 
+
+
+		const hasEmailJs = EMAIL_JS_SERVICE_ID && EMAIL_JS_TEMPLATE_ID && EMAIL_JS_PUBLIC_KEY;
+		const hasFormspree = FORMSPREE_FORM_ID;
+
+		if (!hasEmailJs && !hasFormspree) {
+			setLoading(false);
+			toast.error("Contact temporarily unavailable. Please ping me on LinkedIn.", { position: 'bottom-right' });
+			return;
+		}
+
+		if (hasFormspree) {
+			fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					name: username,
+					email: user_email,
+					message: user_message,
+				})
+			})
+			.then((res) => {
+				if (!res.ok) throw new Error('Failed');
+				setLoading(false);
+				toast.success("Message sent successfully!", { position: 'bottom-right' });
+				setForm({ name: "", email: "", message: "" });
+			})
+			.catch((err) => {
+				setLoading(false);
+				console.error(err);
+				toast.error("Uh, oh! Something went wrong. Please try again later.", { position: 'bottom-right' });
+			});
+			return;
+		}
+
 		emailjs
 			.send(
 				EMAIL_JS_SERVICE_ID,
 				EMAIL_JS_TEMPLATE_ID,
 				{
 					from_name: username,
-					to_name: "Nithin Manda",
+					to_name: "Vijay Syam BK",
 					reply_to: user_email,
-					to_email: "goudnithin77@gmail.com",
+					to_email: "vjsyam17@gmail.com",
 					message: user_message,
 				},
 				EMAIL_JS_PUBLIC_KEY
@@ -76,11 +111,11 @@ const Contact = () => {
 	};
 
 	return (
-		<div className='relative z-0 bg-black w-screen h-screen mt-12'>
+		<div className='relative z-0 bg-black w-screen min-h-screen mt-12'>
 			<div className='text-white contact overflow-x-hidden pt-12 mt-8' id='contact'>
-				<div className='z-10 w-full sm:w-[650px] m-auto p-8 rounded-2xl shadow-md bg-gray-800'>
-					<p className='font-light text-center'>REACH OUT TO ME</p>
-					<h2 className='text-5xl font-extrabold mt-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-pink-500'>Contact.</h2>
+				<div className='z-10 w-full sm:w-[650px] m-auto p-8 rounded-2xl border border-white/10 bg-gray-900/60 backdrop-blur shadow-xl'>
+					<p className='font-light text-center text-white/70'>REACH OUT TO ME</p>
+					<h2 className='text-5xl font-extrabold mt-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-rose-300 to-pink-400'>Contact</h2>
 					<form
 						ref={formRef}
 						onSubmit={handleSubmit}
@@ -94,7 +129,7 @@ const Contact = () => {
 								value={form.name}
 								onChange={handleChange}
 								placeholder="Enter your name"
-								className='py-3 px-5 rounded-lg outline-none border-none font-medium bg-gray-900 text-gray-100'
+								className='py-3 px-5 rounded-lg outline-none border border-white/10 focus:border-white/30 focus:ring-2 focus:ring-white/10 font-medium bg-gray-900 text-gray-100 transition'
 								required
 							/>
 						</label>
@@ -106,7 +141,7 @@ const Contact = () => {
 								value={form.email}
 								onChange={handleChange}
 								placeholder="Ex: abc@gmail.com"
-								className='py-3 px-5 rounded-lg outline-none border-none font-medium bg-gray-900 text-gray-100'
+								className='py-3 px-5 rounded-lg outline-none border border-white/10 focus:border-white/30 focus:ring-2 focus:ring-white/10 font-medium bg-gray-900 text-gray-100 transition'
 								required
 							/>
 						</label>
@@ -118,16 +153,19 @@ const Contact = () => {
 								value={form.message}
 								onChange={handleChange}
 								placeholder='Do you have anything to say?'
-								className='py-3 px-5 rounded-lg outline-none border-none font-medium bg-gray-900 text-gray-100'
+								className='py-3 px-5 rounded-lg outline-none border border-white/10 focus:border-white/30 focus:ring-2 focus:ring-white/10 font-medium bg-gray-900 text-gray-100 transition'
 								required
 							/>
 						</label>
 
 						<button
 							type='submit'
-							className='mt-4 py-3 px-6 rounded-xl outline-none w-full font-bold shadow-lg bg-gray-900 text-white hover:bg-gray-700 transition-colors duration-300'
+							className='group mt-4 py-3 px-6 rounded-xl outline-none w-full font-bold shadow-lg bg-gradient-to-r from-emerald-400/20 to-teal-400/20 border border-emerald-400/30 text-emerald-200 hover:from-emerald-400/30 hover:to-teal-400/30 transition'
 						>
-							{loading ? "Sending..." : "Send"}
+							<span className='inline-flex items-center gap-2 justify-center'>
+								<svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${loading ? 'animate-spin' : ''}`} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1Zm9-6a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1ZM6 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1Zm12.364-7.778a1 1 0 0 1 0 1.414l-1.415 1.414a1 1 0 1 1-1.414-1.414l1.415-1.414a1 1 0 0 1 1.414 0ZM8.464 16.95a1 1 0 0 1 0 1.415l-1.415 1.414A1 1 0 0 1 5.636 18.364l1.415-1.415a1 1 0 0 1 1.414 0Zm9.9 1.415a1 1 0 0 1-1.414 0l-1.415-1.415a1 1 0 0 1 1.414-1.414l1.415 1.415a1 1 0 0 1 0 1.414ZM7.05 4.222a1 1 0 0 1 0 1.414L5.636 7.05A1 1 0 0 1 4.222 5.636L5.636 4.222A1 1 0 0 1 7.05 4.222Z"/></svg>
+								{loading ? "Sending..." : "Send"}
+							</span>
 						</button>
 					</form>
 				</div>
