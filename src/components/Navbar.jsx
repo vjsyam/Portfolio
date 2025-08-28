@@ -33,7 +33,7 @@ const Navbar = () => {
           <Link to='/experience' className={`${pathname==='/experience'?'text-yellow-300':'text-white/80 hover:text-white'} transition-colors`}>Education</Link>
           <Link to='/projects' className={`${pathname==='/projects'?'text-yellow-300':'text-white/80 hover:text-white'} transition-colors`}>Projects</Link>
           <Link to='/contact' className={`${pathname==='/contact'?'text-yellow-300':'text-white/80 hover:text-white'} transition-colors`}>Contact</Link>
-          <a href='https://drive.google.com/file/d/1najQ57DomthtyBVBwrpxOEvEUZINsByw/view?usp=sharing' target='_blank' rel='noreferrer' className='group ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-gradient-to-r from-amber-400/20 to-pink-400/20 border border-amber-400/30 text-amber-200 hover:from-amber-400/30 hover:to-pink-400/30 transition'>
+          <a href='https://drive.google.com/file/d/1_weOAPoMf7tlHd3dHmVOW-Q9KFtJIbPK/view?usp=sharing' target='_blank' rel='noreferrer' className='group ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-gradient-to-r from-amber-400/20 to-pink-400/20 border border-amber-400/30 text-amber-200 hover:from-amber-400/30 hover:to-pink-400/30 transition'>
             <svg xmlns="http://www.w3.org/2000/svg" className='h-4 w-4 opacity-80 group-hover:opacity-100' fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
             Resume
           </a>
