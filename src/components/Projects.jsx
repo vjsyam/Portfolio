@@ -8,6 +8,7 @@ import electro from '../components/electro.png'
 import obj from '../components/obj.jpg'
 import tcp from '../components/tcp.png'
 import skill from '../components/skill.png'
+import aletheia from '../components/aletheia.png'
 
 const getBadgeClass = (tag) => {
     const t = tag.toLowerCase();
@@ -29,9 +30,11 @@ const getBadgeClass = (tag) => {
 const ProjectCard = ({ image, title, description, git, demo, technologies }) => {
     return (
         <div className="max-w-sm sm:max-w-sm md:max-w-sm bg-gray-900/60 backdrop-blur border border-white/10 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-transform">
+            {image && (
             <a href={git} target="_blank" rel="noreferrer">
                 <img className="w-full rounded-t-xl h-auto object-cover" src={image} alt={title} />
             </a>
+            )}
             <div className="p-5 sm:p-6">
                 <h5 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-pink-500">{title}</h5>
                 <p className="mt-2 font-normal text-sm sm:text-base md:text-lg text-gray-300">{description}</p>
@@ -128,6 +131,14 @@ export const project = [
         git: 'https://github.com/vjsyam/skilltracker',
         demo: 'https://skilltracker-jade.vercel.app/',
         technologies: ['React', 'Spring Boot', 'MySQL', 'REST API', 'JWT Authentication', 'Role-Based Access']
+    },
+    {
+        title: 'Aletheia',
+        description: 'One Dilemma. Three Minds. Your Verdict.',
+        image: aletheia,
+        git: 'https://github.com/vjsyam/aletheia',
+        demo: 'https://aletheia-vj.vercel.app/',
+        technologies: ['Next.js', 'TypeScript', 'Tailwind CSS']
     }
     
     
