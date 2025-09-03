@@ -34,7 +34,7 @@ const About = () => {
             </p>
 
             <ButtonLink
-              url='https://drive.google.com/file/d/1_weOAPoMf7tlHd3dHmVOW-Q9KFtJIbPK/view?usp=sharing'
+              url='https://drive.google.com/file/d/1Xmmk_dQ0jI-_mM-OvhpkSm1R2A1cAwVV/view?usp=sharing'
               text='View Resume →'
               padding={`px-4 py-2 border border-amber-400/30 bg-gradient-to-r from-amber-400/20 to-pink-400/20 text-amber-200 hover:from-amber-400/30 hover:to-pink-400/30`}
             />
