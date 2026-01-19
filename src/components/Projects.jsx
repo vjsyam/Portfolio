@@ -1,6 +1,7 @@
 import React from "react";
 import { FaGithub } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import Footer from './Footer';
 import hotel from '../components/hotelhomepage.jpeg'
 import write from '../components/writepage.jpeg'
@@ -12,76 +13,88 @@ import aletheia from '../components/aletheia.png'
 
 const getBadgeClass = (tag) => {
     const t = tag.toLowerCase();
-    if (t.includes('react')) return 'text-cyan-300 bg-cyan-500/10 border-cyan-400/20';
-    if (t.includes('node')) return 'text-lime-300 bg-lime-500/10 border-lime-400/20';
-    if (t.includes('mongo')) return 'text-green-300 bg-green-500/10 border-green-400/20';
-    if (t.includes('mysql')) return 'text-sky-300 bg-sky-500/10 border-sky-400/20';
-    if (t.includes('python')) return 'text-yellow-200 bg-yellow-500/10 border-yellow-400/20';
-    if (t.includes('spring')) return 'text-emerald-300 bg-emerald-500/10 border-emerald-400/20';
-    if (t.includes('jwt')) return 'text-rose-300 bg-rose-500/10 border-rose-400/20';
-    if (t.includes('rest')) return 'text-indigo-300 bg-indigo-500/10 border-indigo-400/20';
-    if (t.includes('blockchain')) return 'text-fuchsia-300 bg-fuchsia-500/10 border-fuchsia-400/20';
-    if (t.includes('firebase')) return 'text-amber-300 bg-amber-500/10 border-amber-400/20';
-    if (t.includes('tailwind')) return 'text-teal-300 bg-teal-500/10 border-teal-400/20';
-    if (t.includes('javascript')) return 'text-yellow-200 bg-yellow-500/10 border-yellow-400/20';
-    return 'text-blue-300 bg-white/5 border-white/10';
+    // Simplified elegant badges
+    return 'text-[14px] text-secondary tracking-wide';
 };
 
-const ProjectCard = ({ image, title, description, git, demo, technologies }) => {
+const ProjectCard = ({ index, image, title, description, git, demo, technologies }) => {
     return (
-        <div className="max-w-sm sm:max-w-sm md:max-w-sm bg-gray-900/60 backdrop-blur border border-white/10 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-transform">
-            {image && (
-            <a href={git} target="_blank" rel="noreferrer">
-                <img className="w-full rounded-t-xl h-auto object-cover" src={image} alt={title} />
-            </a>
-            )}
-            <div className="p-5 sm:p-6">
-                <h5 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-pink-500">{title}</h5>
-                <p className="mt-2 font-normal text-sm sm:text-base md:text-lg text-gray-300">{description}</p>
-            </div>
-            <div className='m-3 sm:m-4 lg:m-5 flex justify-between items-center'>
-                <div className='flex flex-wrap gap-2 pl-2'>
-                    {technologies.map((tag, index) => (
-                        <span
-                            key={`${index}-${tag}`}
-                            className={`text-[12px] px-2 py-1 rounded-full border ${getBadgeClass(tag)}`}
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.1 }}
+            className="bg-black-200 p-5 rounded-2xl sm:w-[360px] w-full border border-white/5 hover:border-[#915EFF]/50 transition-all hover:shadow-card group"
+        >
+            <div className="relative w-full h-[230px]">
+                <img
+                    src={image}
+                    alt={title}
+                    loading="lazy"
+                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 flex justify-end m-3 card-img_hover gap-2">
+                    {git && (
+                        <div
+                            onClick={() => window.open(git, "_blank")}
+                            className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer border border-white/10 hover:bg-black transition-colors"
                         >
-                            #{tag}
-                        </span>
-                    ))}
-                </div>
-                <div className='flex gap-2'>
-                  {demo && (
-                    <a href={demo} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 px-3 py-2 rounded-md bg-gradient-to-r from-emerald-400/20 to-teal-400/20 border border-emerald-400/30 text-emerald-200 hover:from-emerald-400/30 hover:to-teal-400/30 transition">
-                      <FiExternalLink className='opacity-80 group-hover:opacity-100'/> Demo
-                    </a>
-                  )}
-                  {git && (
-                    <a href={git} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 px-3 py-2 rounded-md bg-gradient-to-r from-fuchsia-400/20 to-purple-400/20 border border-fuchsia-400/30 text-fuchsia-200 hover:from-fuchsia-400/30 hover:to-purple-400/30 transition">
-                      <FaGithub className='opacity-80 group-hover:opacity-100'/> GitHub
-                    </a>
-                  )}
+                            <FaGithub className="w-1/2 h-1/2 object-contain" />
+                        </div>
+                    )}
+                    {demo && (
+                        <div
+                            onClick={() => window.open(demo, "_blank")}
+                            className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer border border-white/10 hover:bg-black transition-colors"
+                        >
+                            <FiExternalLink className="w-1/2 h-1/2 object-contain" />
+                        </div>
+                    )}
                 </div>
             </div>
-        </div>
+
+            <div className="mt-5">
+                <h3 className="text-white font-bold text-[24px]">{title}</h3>
+                <p className="mt-2 text-secondary text-[14px] leading-[24px] line-clamp-3">{description}</p>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+                {technologies.map((tag) => (
+                    <p key={tag} className={`text-[14px] ${getBadgeClass(tag)}`}>
+                        #{tag}
+                    </p>
+                ))}
+            </div>
+        </motion.div>
     );
 };
 
 const Projects = () => {
     return (
-        <div className="bg-black">
-            <div className="flex flex-wrap gap-7 justify-center items-stretch m-6 sm:m-12 p-6 sm:p-12">
-                {project.map((item, index) => (
-                    <ProjectCard
-                        key={index}
-                        image={item.image}
-                        title={item.title}
-                        description={item.description}
-                        git={item.git}
-                        demo={item.demo}
-                        technologies={item.technologies}
-                    />
-                ))}
+        <div className="bg-primary min-h-screen flex flex-col justify-between" id="projects">
+            <div className="pt-24 pb-10 flex-grow">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="max-w-7xl mx-auto px-6 sm:px-16"
+                >
+                    <p className="text-secondary uppercase tracking-wider text-[18px]">My Work</p>
+                    <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Projects.</h2>
+                    <p className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]">
+                        Following projects showcases my skills. Each project is briefly described with links to code repositories.
+                    </p>
+                </motion.div>
+
+                <div className="mt-20 flex flex-wrap gap-7 justify-center max-w-7xl mx-auto px-6">
+                    {project.map((item, index) => (
+                        <ProjectCard
+                            key={`project-${index}`}
+                            index={index}
+                            {...item}
+                        />
+                    ))}
+                </div>
             </div>
             <Footer />
         </div>
@@ -91,57 +104,54 @@ const Projects = () => {
 export const project = [
     {
         title: 'Hotel Booking Application',
-        description: 'A comprehensive hotel booking application developed to manage hotel reservations efficiently. The application allows users to book rooms, view hotel details, and manage bookings.',
+        description: 'A comprehensive hotel booking application developed to manage hotel reservations efficiently.',
         image: hotel,
         git: 'https://github.com/vjsyam/Hotel-Booking-Project-Clg',
-        technologies: ['React','Artificial Intelligence']
+        technologies: ['React', 'AI']
     },
     {
         title: 'Time Capsule',
-        description: 'It is a futuristic platform designed to let users write to their future selves, relive memories, and set goals for tomorrow. The project uses modern web technologies like React, React Router, Material-UI (MUI), and a custom backend with APIs to deliver a seamless user experience.',
+        description: 'Futuristic platform designed to let users write to their future selves, relive memories, and set goals.',
         image: write,
         git: 'https://github.com/vjsyam/Time_Capsule',
-        technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase']
+        technologies: ['React', 'Node.js', 'MongoDB', 'Firebase']
     },
     {
         title: 'Object Detection',
-        description: 'Delivered presentations on various topics including web development, React, and design principles. These presentations were aimed at sharing knowledge and insights with peers and industry professionals.',
+        description: 'AI System for object detection in real-time video streams using Python and OpenCV.',
         image: obj,
         git: 'https://github.com/vjsyam/Object_DetectionAI',
-        technologies: ['Python','Speaking']
+        technologies: ['Python', 'OpenCV']
     },
     {
         title: 'Transparent Charity Platform',
-        description: 'Built a decentralized donation platform with React, Flask, and Ethereum (Truffle & Ganache) to ensure secure and transparent transactions. The platform allows users to donate to charities and track their donations on the blockchain.',
+        description: 'Decentralized donation platform ensuring secure and transparent transactions via Blockchain.',
         image: tcp,
         git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
-        technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain']
+        technologies: ['React', 'Node', 'BlockChain']
     },
     {
-        title: 'Electricity Peak Demand Prediction Using AI',
-        description: 'Developed a machine learning model using Random Forest to predict electricity peak demand,Analyzed historical power consumption data to enhance forecasting accuracy.',
+        title: 'Peak Demand Prediction',
+        description: 'ML model using Random Forest to predict electricity peak demand and analyze power consumption.',
         image: electro,
-        // git: 'https://github.com/vjsyam/TransparentCharityPlatform-TechGeeks-',
-        technologies: ['React', 'Node.js', 'Mongo.db', 'Firebase','BlockChain','Random Forest','Machine Learning']
+        technologies: ['ML', 'RandomForest']
     },
     {
-        title: 'Skill Tracker and Management System',
-        description: 'Built a full-stack application to track, manage, and analyze employee skills. Implemented role-based access for Admin, Manager, and Employee, with features like skill updates, search, and performance tracking.',
-        image: skill, 
+        title: 'Skill Tracker System',
+        description: 'Full-stack app to track, manage, and analyze employee skills with role-based access.',
+        image: skill,
         git: 'https://github.com/vjsyam/skilltracker',
         demo: 'https://skilltracker-jade.vercel.app/',
-        technologies: ['React', 'Spring Boot', 'MySQL', 'REST API', 'JWT Authentication', 'Role-Based Access']
+        technologies: ['Spring Boot', 'React', 'MySQL']
     },
     {
         title: 'Aletheia',
-        description: 'One Dilemma. Three Minds. Your Verdict.',
+        description: 'One Dilemma. Three Minds. Your Verdict. An interactive storytelling experience.',
         image: aletheia,
         git: 'https://github.com/vjsyam/aletheia',
         demo: 'https://aletheia-vj.vercel.app/',
-        technologies: ['Next.js', 'TypeScript', 'Tailwind CSS']
+        technologies: ['Next.js', 'TypeScript', 'Tailwind']
     }
-    
-    
 ];
 
 export default Projects;

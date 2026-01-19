@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from 'react-toastify';
+import { motion } from 'framer-motion';
 import 'react-toastify/dist/ReactToastify.css';
 import { EMAIL_JS_SERVICE_ID, EMAIL_JS_TEMPLATE_ID, EMAIL_JS_PUBLIC_KEY, FORMSPREE_FORM_ID } from "../constants";
 import Footer from "./Footer";
@@ -40,8 +41,6 @@ const Contact = () => {
 			return;
 		}
 
-
-
 		const hasEmailJs = EMAIL_JS_SERVICE_ID && EMAIL_JS_TEMPLATE_ID && EMAIL_JS_PUBLIC_KEY;
 		const hasFormspree = FORMSPREE_FORM_ID;
 
@@ -61,17 +60,17 @@ const Contact = () => {
 					message: user_message,
 				})
 			})
-			.then((res) => {
-				if (!res.ok) throw new Error('Failed');
-				setLoading(false);
-				toast.success("Message sent successfully!", { position: 'bottom-right' });
-				setForm({ name: "", email: "", message: "" });
-			})
-			.catch((err) => {
-				setLoading(false);
-				console.error(err);
-				toast.error("Uh, oh! Something went wrong. Please try again later.", { position: 'bottom-right' });
-			});
+				.then((res) => {
+					if (!res.ok) throw new Error('Failed');
+					setLoading(false);
+					toast.success("Message sent successfully!", { position: 'bottom-right' });
+					setForm({ name: "", email: "", message: "" });
+				})
+				.catch((err) => {
+					setLoading(false);
+					console.error(err);
+					toast.error("Uh, oh! Something went wrong. Please try again later.", { position: 'bottom-right' });
+				});
 			return;
 		}
 
@@ -111,67 +110,73 @@ const Contact = () => {
 	};
 
 	return (
-		<div className='relative z-0 bg-black w-screen min-h-screen mt-12'>
-			<div className='text-white contact overflow-x-hidden pt-12 mt-8' id='contact'>
-				<div className='z-10 w-full sm:w-[650px] m-auto p-8 rounded-2xl border border-white/10 bg-gray-900/60 backdrop-blur shadow-xl'>
-					<p className='font-light text-center text-white/70'>REACH OUT TO ME</p>
-					<h2 className='text-5xl font-extrabold mt-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-rose-300 to-pink-400'>Contact</h2>
+		<div className='relative z-0 bg-primary w-full min-h-screen flex flex-col justify-between overflow-x-hidden pt-20'>
+			<div className='flex-1 flex flex-col items-center justify-center sm:px-10 px-6' id='contact'>
+				<motion.div
+					initial={{ opacity: 0, scale: 0.9 }}
+					whileInView={{ opacity: 1, scale: 1 }}
+					transition={{ duration: 0.5 }}
+					viewport={{ once: true }}
+					className='w-full max-w-[800px] bg-black-100 p-8 rounded-2xl border border-white/10 shadow-card'
+				>
+					<p className='font-light text-center text-secondary uppercase tracking-wider text-[18px]'>Reach Out To Me</p>
+					<h2 className='text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center mb-8'>Contact.</h2>
+
 					<form
 						ref={formRef}
 						onSubmit={handleSubmit}
-						className='mt-12 flex flex-col gap-6'
+						className='flex flex-col gap-6'
 					>
 						<label className='flex flex-col'>
-							<span className='font-medium mb-2'>Your Name</span>
+							<span className='text-white font-medium mb-4'>Your Name</span>
 							<input
 								type='text'
 								name='name'
 								value={form.name}
 								onChange={handleChange}
 								placeholder="Enter your name"
-								className='py-3 px-5 rounded-lg outline-none border border-white/10 focus:border-white/30 focus:ring-2 focus:ring-white/10 font-medium bg-gray-900 text-gray-100 transition'
+								className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
 								required
 							/>
 						</label>
 						<label className='flex flex-col'>
-							<span className='font-medium mb-2'>Your Email</span>
+							<span className='text-white font-medium mb-4'>Your Email</span>
 							<input
 								type='email'
 								name='email'
 								value={form.email}
 								onChange={handleChange}
 								placeholder="Ex: abc@gmail.com"
-								className='py-3 px-5 rounded-lg outline-none border border-white/10 focus:border-white/30 focus:ring-2 focus:ring-white/10 font-medium bg-gray-900 text-gray-100 transition'
+								className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
 								required
 							/>
 						</label>
 						<label className='flex flex-col'>
-							<span className='font-medium mb-2'>Your Message</span>
+							<span className='text-white font-medium mb-4'>Your Message</span>
 							<textarea
-								rows={6}
+								rows={7}
 								name='message'
 								value={form.message}
 								onChange={handleChange}
 								placeholder='Do you have anything to say?'
-								className='py-3 px-5 rounded-lg outline-none border border-white/10 focus:border-white/30 focus:ring-2 focus:ring-white/10 font-medium bg-gray-900 text-gray-100 transition'
+								className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium resize-none'
 								required
 							/>
 						</label>
 
 						<button
 							type='submit'
-							className='group mt-4 py-3 px-6 rounded-xl outline-none w-full font-bold shadow-lg bg-gradient-to-r from-emerald-400/20 to-teal-400/20 border border-emerald-400/30 text-emerald-200 hover:from-emerald-400/30 hover:to-teal-400/30 transition'
+							className='bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl hover:bg-black-100 transition-colors mx-auto'
 						>
-							<span className='inline-flex items-center gap-2 justify-center'>
-								<svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${loading ? 'animate-spin' : ''}`} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1Zm9-6a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1ZM6 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1Zm12.364-7.778a1 1 0 0 1 0 1.414l-1.415 1.414a1 1 0 1 1-1.414-1.414l1.415-1.414a1 1 0 0 1 1.414 0ZM8.464 16.95a1 1 0 0 1 0 1.415l-1.415 1.414A1 1 0 0 1 5.636 18.364l1.415-1.415a1 1 0 0 1 1.414 0Zm9.9 1.415a1 1 0 0 1-1.414 0l-1.415-1.415a1 1 0 0 1 1.414-1.414l1.415 1.415a1 1 0 0 1 0 1.414ZM7.05 4.222a1 1 0 0 1 0 1.414L5.636 7.05A1 1 0 0 1 4.222 5.636L5.636 4.222A1 1 0 0 1 7.05 4.222Z"/></svg>
-								{loading ? "Sending..." : "Send"}
-							</span>
+							{loading ? "Sending..." : "Send"}
 						</button>
 					</form>
-				</div>
-				<ToastContainer />
+				</motion.div>
+				<ToastContainer theme="dark" />
 			</div>
-			<Footer />
+			<div className="w-full mt-10">
+				<Footer />
+			</div>
 		</div>
 	);
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { motion } from 'framer-motion';
 import 'react-vertical-timeline-component/style.min.css';
 import Footer from './Footer';
 import skcet from '../components/skcet.jpeg'
@@ -23,7 +24,7 @@ const education = [
     company: 'Bharathi Matric Higher Secondary School',
     duration: '2010 - 2023',
     logo: bmhss,
-    url: 'https://bharathimatricschool.in/home', 
+    url: 'https://bharathimatricschool.in/home',
     points: [
       'Completed higher secondary education with a focus on Science stream.',
       'Developed a passion for coding and technology during school projects.',
@@ -34,56 +35,61 @@ const education = [
 
 const Experience = () => {
   return (
-    <div className='experience bg-black w-screen min-h-screen text-white pt-4 pt-16 overflow-x-hidden' id='experience'>
-      <div className='pt-14 sm:px-16 px-4'>
-        <p className='font-light text-white/70 text-center sm:text-left'>MY JOURNEY SO FAR.</p>
-        <h2 className='text-4xl sm:text-5xl font-extrabold mt-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-rose-300 to-pink-400 text-center sm:text-left'>Education Journey</h2>
-      </div>
-      <VerticalTimeline className='mt-9'>
-        {education.map((edu) => (
-          <VerticalTimelineElement
-            key={edu.role}
-            className="relative vertical-timeline-element--work"
-            contentStyle={{ background: "#1d1836", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-            date={edu.duration}
-            iconStyle={{ background: '#fff' }}
-            icon={
-              <a className='flex justify-center items-center w-full h-full' href={edu.url} target='_blank' rel='noreferrer'>
-                <img
-                  src={edu.logo}
-                  alt={edu.company}
-                  className='w-[60%] h-[60%] object-contain'
-                />
-              </a>
-            }
-          >
-            <div>
-              <h3 className='text-white text-[24px] font-bold'>{edu.role}</h3>
-              <p
-                className='text-secondary text-[16px] font-semibold'
-                style={{ margin: 0 }}
-              >
-                {edu.company}
-              </p>
-            </div>
+    <div className='bg-primary w-full min-h-screen text-white pt-20 overflow-hidden' id='experience'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className='max-w-7xl mx-auto px-6 sm:px-16'
+      >
+        <p className='text-secondary text-center sm:text-left uppercase tracking-wider text-[18px]'>My Journey So Far</p>
+        <h2 className='text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center sm:text-left'>Education Journey.</h2>
+      </motion.div>
 
-            <ul className='mt-5 list-disc ml-5 space-y-2'>
-              {edu.points.map((point, index) => (
-                <li
-                  key={`education-point-${index}`}
-                  className='text-white-100 text-[14px] pl-1 tracking-wider'
+      <div className='mt-20 flex flex-col'>
+        <VerticalTimeline>
+          {education.map((edu, index) => (
+            <VerticalTimelineElement
+              key={edu.role}
+              contentStyle={{ background: "#1d1836", color: "#fff", borderBottom: '2px solid white' }}
+              contentArrowStyle={{ borderRight: "7px solid  #232631" }}
+              date={edu.duration}
+              iconStyle={{ background: '#fff' }}
+              icon={
+                <a className='flex justify-center items-center w-full h-full' href={edu.url} target='_blank' rel='noreferrer'>
+                  <img
+                    src={edu.logo}
+                    alt={edu.company}
+                    className='w-[60%] h-[60%] object-contain rounded-full'
+                  />
+                </a>
+              }
+            >
+              <div>
+                <h3 className='text-white text-[24px] font-bold'>{edu.role}</h3>
+                <p
+                  className='text-secondary text-[16px] font-semibold'
+                  style={{ margin: 0 }}
                 >
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </VerticalTimelineElement>
-        ))}
-      </VerticalTimeline>
-      <div className='pb-8'>
-        <Footer />
+                  {edu.company}
+                </p>
+              </div>
+
+              <ul className='mt-5 list-disc ml-5 space-y-2'>
+                {edu.points.map((point, index) => (
+                  <li
+                    key={`education-point-${index}`}
+                    className='text-white-100 text-[14px] pl-1 tracking-wider'
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </VerticalTimelineElement>
+          ))}
+        </VerticalTimeline>
       </div>
+      <Footer />
     </div>
   );
 }
