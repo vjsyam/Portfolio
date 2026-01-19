@@ -12,7 +12,6 @@ import skill from '../components/skill.png'
 import aletheia from '../components/aletheia.png'
 
 const getBadgeClass = (tag) => {
-    const t = tag.toLowerCase();
     // Simplified elegant badges
     return 'text-[14px] text-secondary tracking-wide';
 };

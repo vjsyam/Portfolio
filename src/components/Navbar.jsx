@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const { pathname } = useLocation();
 
@@ -25,7 +24,6 @@ const Navbar = () => {
           to="/"
           className="flex items-center gap-2"
           onClick={() => {
-            setActive("");
             window.scrollTo(0, 0);
           }}
         >
@@ -41,7 +39,6 @@ const Navbar = () => {
               key={link.id}
               className={`${pathname === link.id ? "text-white" : "text-secondary"
                 } hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-300`}
-              onClick={() => setActive(link.title)}
             >
               <Link to={link.id}>{link.title}</Link>
             </li>
@@ -76,7 +73,6 @@ const Navbar = () => {
                     } font-poppins font-medium cursor-pointer text-[16px]`}
                   onClick={() => {
                     setToggle(!toggle);
-                    setActive(link.title);
                   }}
                 >
                   <Link to={link.id}>{link.title}</Link>
