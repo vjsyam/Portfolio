@@ -23,7 +23,7 @@ const ServiceCard = ({ idx, service }) => (
 
 const About = () => {
   return (
-    <div className='bg-primary relative w-full overflow-hidden min-h-screen flex flex-col' id='about'>
+    <div className='bg-transparent relative w-full overflow-hidden min-h-screen flex flex-col' id='about'>
       <div className='max-w-7xl mx-auto py-20 px-6 sm:px-10 flex-grow'>
         <motion.div
           initial={{ opacity: 0 }}
@@ -41,10 +41,10 @@ const About = () => {
           viewport={{ once: true }}
           className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px] text-justify'
         >
-          Hi, I'm <span className='text-white font-medium'>Vijay Syam BK</span>. I have a strong passion for learning and developing scalable web applications.
-          As a <span className='text-[#915EFF] font-semibold'>Software Developer</span> specialized in the MERN stack, I excel at crafting intuitive user interfaces and efficient backend systems.
+          Hi, I'm <span className='text-white font-medium'>Vijay Syam BK</span>. I'm a software developer who loves building things for the web. 
+          I specialize in the MERN stack and enjoy creating clean, user-friendly interfaces along with solid backend architectures.
           <br className='block mb-4' />
-          I focus on writing clean, optimized code and thrive in collaborative environments.
+          Whether working on personal projects or collaborating with a team, I always aim to write efficient code and learn something new along the way.
         </motion.p>
 
         <motion.div
@@ -54,7 +54,7 @@ const About = () => {
           className='mt-8'
         >
           <ButtonLink
-            url='https://drive.google.com/file/d/1s97ZsoFyUk3tkerNdzm6zG_27cjXHYVg/view?usp=sharing'
+            url='https://drive.google.com/file/d/1AAXJj82OoefRiBr_4q2hdKu4Dhw7aN9V/view?usp=sharing'
             text='View Resume →'
             padding={`px-6 py-3 border border-[#915EFF]/50 rounded-lg text-white hover:bg-[#915EFF]/20 transition-all shadow-md shadow-primary`}
           />

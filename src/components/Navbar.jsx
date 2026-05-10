@@ -12,7 +12,7 @@ const Navbar = () => {
   const navLinks = [
     { id: "/", title: "Home" },
     { id: "/about", title: "About" },
-    { id: "/experience", title: "Experience" },
+    { id: "/experience", title: "Education" },
     { id: "/projects", title: "Projects" },
     { id: "/contact", title: "Contact" },
   ];
@@ -45,7 +45,7 @@ const Navbar = () => {
           ))}
           <li>
             <a
-              href='https://drive.google.com/file/d/1s97ZsoFyUk3tkerNdzm6zG_27cjXHYVg/view?usp=sharing'
+              href='https://drive.google.com/file/d/1AAXJj82OoefRiBr_4q2hdKu4Dhw7aN9V/view?usp=sharing'
               target='_blank'
               rel='noreferrer'
               className='text-secondary hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-300'

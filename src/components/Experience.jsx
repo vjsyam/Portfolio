@@ -35,7 +35,7 @@ const education = [
 
 const Experience = () => {
   return (
-    <div className='bg-primary w-full min-h-screen text-white pt-20 overflow-hidden' id='experience'>
+    <div className='bg-transparent w-full min-h-screen text-white pt-20 overflow-hidden' id='experience'>
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
-
 
 const Home = () => {
   const [text, setText] = useState('');
@@ -22,14 +19,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='relative w-full h-screen mx-auto overflow-hidden bg-primary'>
-      {/* 3D Background */}
-      <div className='absolute inset-0 z-0'>
-        <Canvas>
-          <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-        </Canvas>
-      </div>
-
+    <div className='relative w-full h-screen mx-auto overflow-hidden bg-transparent'>
       {/* Content */}
       <div className='absolute inset-0 flex flex-col justify-center items-center z-10 px-6'>
         <motion.div
@@ -49,7 +39,7 @@ const Home = () => {
             transition={{ delay: 1, duration: 1 }}
             className='mt-4 text-secondary text-[18px] max-w-2xl mx-auto leading-[30px] font-light'
           >
-            I'm passionate about learning, coding, and creating beautiful web experiences.
+            I love learning, coding, and building things for the web.
           </motion.p>
         </motion.div>
 

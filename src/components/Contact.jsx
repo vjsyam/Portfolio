@@ -110,7 +110,7 @@ const Contact = () => {
 	};
 
 	return (
-		<div className='relative z-0 bg-primary w-full min-h-screen flex flex-col justify-between overflow-x-hidden pt-20'>
+		<div className='relative z-0 bg-transparent w-full min-h-screen flex flex-col justify-between overflow-x-hidden pt-20'>
 			<div className='flex-1 flex flex-col items-center justify-center sm:px-10 px-6' id='contact'>
 				<motion.div
 					initial={{ opacity: 0, scale: 0.9 }}

@@ -16,7 +16,7 @@ const getBadgeClass = (tag) => {
     return 'text-[14px] text-secondary tracking-wide';
 };
 
-const ProjectCard = ({ index, image, title, description, git, demo, technologies }) => {
+const ProjectCard = ({ index, image, title, description, git, demo, technologies, livePreview }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -25,14 +25,28 @@ const ProjectCard = ({ index, image, title, description, git, demo, technologies
             viewport={{ once: true, amount: 0.1 }}
             className="bg-black-200 p-5 rounded-2xl sm:w-[360px] w-full border border-white/5 hover:border-[#915EFF]/50 transition-all hover:shadow-card group"
         >
-            <div className="relative w-full h-[230px]">
-                <img
-                    src={image}
-                    alt={title}
-                    loading="lazy"
-                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 flex justify-end m-3 card-img_hover gap-2">
+            <div className="relative w-full h-[230px] rounded-2xl overflow-hidden bg-[#1a1a1a]">
+                {livePreview && demo ? (
+                    <div className="absolute inset-0 w-full h-full transition-transform duration-300 group-hover:scale-105">
+                        <iframe
+                            src={demo}
+                            title={title}
+                            className="absolute top-0 left-0 border-none pointer-events-none origin-top-left"
+                            style={{ width: '400%', height: '400%', transform: 'scale(0.25)' }}
+                            tabIndex="-1"
+                            scrolling="no"
+                        />
+                        <div className="absolute inset-0 z-10" />
+                    </div>
+                ) : (
+                    <img
+                        src={image}
+                        alt={title}
+                        loading="lazy"
+                        className="w-full h-full object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105"
+                    />
+                )}
+                <div className="absolute inset-0 flex justify-end m-3 card-img_hover gap-2 z-20">
                     {git && (
                         <div
                             onClick={() => window.open(git, "_blank")}
@@ -70,7 +84,7 @@ const ProjectCard = ({ index, image, title, description, git, demo, technologies
 
 const Projects = () => {
     return (
-        <div className="bg-primary min-h-screen flex flex-col justify-between" id="projects">
+        <div className="bg-transparent min-h-screen flex flex-col justify-between" id="projects">
             <div className="pt-24 pb-10 flex-grow">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -85,10 +99,26 @@ const Projects = () => {
                     </p>
                 </motion.div>
 
-                <div className="mt-20 flex flex-wrap gap-7 justify-center max-w-7xl mx-auto px-6">
-                    {project.map((item, index) => (
+                <div className="mt-16 max-w-7xl mx-auto px-6 sm:px-16">
+                    <h3 className="text-white font-bold text-[30px] mb-8">Personal Projects</h3>
+                </div>
+                <div className="flex flex-wrap gap-7 justify-center max-w-7xl mx-auto px-6">
+                    {personalProjects.map((item, index) => (
                         <ProjectCard
-                            key={`project-${index}`}
+                            key={`personal-project-${index}`}
+                            index={index}
+                            {...item}
+                        />
+                    ))}
+                </div>
+
+                <div className="mt-16 max-w-7xl mx-auto px-6 sm:px-16">
+                    <h3 className="text-white font-bold text-[30px] mb-8">Team Projects</h3>
+                </div>
+                <div className="flex flex-wrap gap-7 justify-center max-w-7xl mx-auto px-6">
+                    {teamProjects.map((item, index) => (
+                        <ProjectCard
+                            key={`team-project-${index}`}
                             index={index}
                             {...item}
                         />
@@ -100,14 +130,45 @@ const Projects = () => {
     );
 };
 
-export const project = [
+export const personalProjects = [
     {
-        title: 'Hotel Booking Application',
+        title: 'Homey Solution',
         description: 'A comprehensive hotel booking application developed to manage hotel reservations efficiently.',
         image: hotel,
         git: 'https://github.com/vjsyam/Hotel-Booking-Project-Clg',
-        technologies: ['React', 'AI']
+        demo: 'https://homeysolution.vercel.app/',
+        livePreview: true,
+        technologies: ['React', 'Node.js', 'MongoDB']
     },
+    {
+        title: 'LinkShort',
+        description: 'Production-ready URL shortening service with high-availability analytics and JWT authentication.',
+        image: hotel, 
+        demo: 'https://linkshort17.vercel.app/',
+        livePreview: true,
+        technologies: ['Java', 'React', 'PostgreSQL', 'Redis', 'Docker']
+    },
+    {
+        title: 'Skill Tracker System',
+        description: 'Full-stack app to track, manage, and analyze employee skills with role-based access.',
+        image: skill,
+        git: 'https://github.com/vjsyam/skilltracker',
+        demo: 'https://skilltracker-jade.vercel.app/',
+        livePreview: true,
+        technologies: ['Spring Boot', 'React', 'MySQL']
+    },
+    {
+        title: 'Aletheia',
+        description: 'One Dilemma. Three Minds. Your Verdict. An interactive storytelling experience.',
+        image: aletheia,
+        git: 'https://github.com/vjsyam/aletheia',
+        demo: 'https://aletheia-vj.vercel.app/',
+        livePreview: true,
+        technologies: ['Next.js', 'TypeScript', 'Tailwind']
+    }
+];
+
+export const teamProjects = [
     {
         title: 'Time Capsule',
         description: 'Futuristic platform designed to let users write to their future selves, relive memories, and set goals.',
@@ -134,22 +195,6 @@ export const project = [
         description: 'ML model using Random Forest to predict electricity peak demand and analyze power consumption.',
         image: electro,
         technologies: ['ML', 'RandomForest']
-    },
-    {
-        title: 'Skill Tracker System',
-        description: 'Full-stack app to track, manage, and analyze employee skills with role-based access.',
-        image: skill,
-        git: 'https://github.com/vjsyam/skilltracker',
-        demo: 'https://skilltracker-jade.vercel.app/',
-        technologies: ['Spring Boot', 'React', 'MySQL']
-    },
-    {
-        title: 'Aletheia',
-        description: 'One Dilemma. Three Minds. Your Verdict. An interactive storytelling experience.',
-        image: aletheia,
-        git: 'https://github.com/vjsyam/aletheia',
-        demo: 'https://aletheia-vj.vercel.app/',
-        technologies: ['Next.js', 'TypeScript', 'Tailwind']
     }
 ];
 
