@@ -2,7 +2,6 @@ import React from "react";
 import { FaGithub } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import Footer from './Footer';
 import hotel from '../components/hotelhomepage.jpeg'
 import write from '../components/writepage.jpeg'
 import electro from '../components/electro.png'
@@ -10,9 +9,12 @@ import obj from '../components/obj.jpg'
 import tcp from '../components/tcp.png'
 import skill from '../components/skill.png'
 import aletheia from '../components/aletheia.png'
+import mini from '../components/minialm.png'
+import image from '../components/imageforgery.png'
+import causal from '../components/causal.png'
+import ai from '../components/airesume.jpeg'
 
 const getBadgeClass = (tag) => {
-    // Simplified elegant badges
     return 'text-[14px] text-secondary tracking-wide';
 };
 
@@ -38,13 +40,17 @@ const ProjectCard = ({ index, image, title, description, git, demo, technologies
                         />
                         <div className="absolute inset-0 z-10" />
                     </div>
-                ) : (
+                ) : image ? (
                     <img
                         src={image}
                         alt={title}
                         loading="lazy"
                         className="w-full h-full object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105"
                     />
+                ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-tertiary p-4 text-center">
+                        <span className="text-[#915EFF] font-bold text-lg">{title}</span>
+                    </div>
                 )}
                 <div className="absolute inset-0 flex justify-end m-3 card-img_hover gap-2 z-20">
                     {git && (
@@ -125,12 +131,41 @@ const Projects = () => {
                     ))}
                 </div>
             </div>
-            <Footer />
         </div>
     );
 };
 
 export const personalProjects = [
+    {
+        title: 'CausalGuard',
+        description: 'AI-powered fraud detection platform combining causal graph discovery, transaction risk scoring, and counterfactual explanations.',
+        image: causal,
+        git: 'https://github.com/vjsyam/causalguard',
+        technologies: ['Python', 'FastAPI', 'React', 'TypeScript', 'MachineLearning']
+    },
+    {
+        title: 'Image Forgery Detector',
+        description: 'Deep-learning image forensics system that detects image manipulation and localizes tampered regions using CNNs and U-Net.',
+        image: image,
+        git: 'https://github.com/vjsyam/imageforgerydetector',
+        technologies: ['Python', 'PyTorch', 'ResNet50', 'UNet', 'DeepLearning']
+    },
+    {
+        title: 'AI Resume Analyzer',
+        description: 'AI-powered resume evaluation platform featuring ATS scoring, skill-gap analysis, resume optimization, and cover letter generation.',
+        image: ai,
+        git: 'https://github.com/vjsyam/airesumeanalyzer',
+        technologies: ['Python', 'FastAPI', 'React', 'GeminiAI', 'NLP']
+    },
+    {
+        title: 'LinkShort',
+        description: 'Production-ready URL shortening service with high-availability analytics and JWT authentication.',
+        image: hotel,
+        git: 'https://github.com/vjsyam/linkshort',
+        demo: 'https://linkshort17.vercel.app/',
+        livePreview: true,
+        technologies: ['Java', 'React', 'PostgreSQL', 'Redis', 'Docker']
+    },
     {
         title: 'Homey Solution',
         description: 'A comprehensive hotel booking application developed to manage hotel reservations efficiently.',
@@ -139,14 +174,6 @@ export const personalProjects = [
         demo: 'https://homeysolution.vercel.app/',
         livePreview: true,
         technologies: ['React', 'Node.js', 'MongoDB']
-    },
-    {
-        title: 'LinkShort',
-        description: 'Production-ready URL shortening service with high-availability analytics and JWT authentication.',
-        image: hotel, 
-        demo: 'https://linkshort17.vercel.app/',
-        livePreview: true,
-        technologies: ['Java', 'React', 'PostgreSQL', 'Redis', 'Docker']
     },
     {
         title: 'Skill Tracker System',
@@ -169,6 +196,13 @@ export const personalProjects = [
 ];
 
 export const teamProjects = [
+        {
+        title: 'JARVIS ALM',
+        description: 'Multimodal voice and audio AI assistant with real-time speech intelligence, RAG-augmented vector memory, and autonomous agent tool execution.',
+        image: mini,
+        git: 'https://github.com/SharvinAdhith/ALM',
+        technologies: ['Python', 'FastAPI', 'React', 'ChromaDB', 'Whisper', 'TailwindCSS']
+    },
     {
         title: 'Time Capsule',
         description: 'Futuristic platform designed to let users write to their future selves, relive memories, and set goals.',

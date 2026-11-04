@@ -1,20 +1,36 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
+import React, { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Stars, Float, Icosahedron } from '@react-three/drei';
 import Navbar from './components/Navbar';
-
-const Home = lazy(() => import('./components/Home'));
-const Experience = lazy(() => import('./components/Experience'));
-const About = lazy(() => import('./components/About'));
-const Contact = lazy(() => import('./components/Contact'));
-const Projects = lazy(() => import('./components/Projects'));
+import Home from './components/Home';
+import About from './components/About';
+import Experience from './components/Experience';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 
 const App = () => {
+  useEffect(() => {
+    // If the URL has a hash or path matching a section, scroll smoothly to it
+    const hash = window.location.hash.replace('#', '');
+    const path = window.location.pathname.replace('/', '').toLowerCase();
+    const targetId = hash || path;
+
+    if (targetId) {
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const yOffset = -70;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  }, []);
+
   return (
-    <BrowserRouter>
+    <div className="relative w-full min-h-screen bg-primary">
       {/* Global 3D Background */}
-      <div className="fixed inset-0 z-[-1] bg-primary">
+      <div className="fixed inset-0 z-0 bg-primary pointer-events-none">
         <Canvas camera={{ position: [0, 0, 5] }}>
           <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
           <ambientLight intensity={0.5} />
@@ -32,24 +48,19 @@ const App = () => {
         </Canvas>
       </div>
 
-      <div className="relative z-10 w-full min-h-screen">
+      {/* Main Content */}
+      <div className="relative z-10 w-full">
         <Navbar />
-        <Suspense fallback={
-          <div className='flex justify-center items-center w-full h-screen bg-primary'>
-            <div className="text-white text-2xl font-bold animate-pulse">Loading...</div>
-          </div>
-        }>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/experience' element={<Experience />} />
-            <Route path='/projects' element={<Projects />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/contact' element={<Contact />} />
-          </Routes>
-        </Suspense>
+        <main>
+          <Home />
+          <About />
+          <Experience />
+          <Projects />
+          <Contact />
+        </main>
       </div>
-    </BrowserRouter>
+    </div>
   );
-}
+};
 
 export default App;

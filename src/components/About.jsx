@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { services } from '../constants';
 import ButtonLink from './ButtonLink';
-import Footer from './Footer';
 
 const ServiceCard = ({ idx, service }) => (
   <motion.div
@@ -23,11 +22,12 @@ const ServiceCard = ({ idx, service }) => (
 
 const About = () => {
   return (
-    <div className='bg-transparent relative w-full overflow-hidden min-h-screen flex flex-col' id='about'>
-      <div className='max-w-7xl mx-auto py-20 px-6 sm:px-10 flex-grow'>
+    <div className='bg-transparent relative w-full overflow-hidden min-h-screen flex flex-col justify-center' id='about'>
+      <div className='max-w-7xl mx-auto py-20 px-6 sm:px-10 flex-grow w-full'>
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <p className='text-secondary uppercase tracking-wider text-[16px]'>Introduction</p>
@@ -37,7 +37,7 @@ const About = () => {
         <motion.p
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: true }}
           className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px] text-justify'
         >
@@ -50,6 +50,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
           className='mt-8'
         >
@@ -66,7 +67,6 @@ const About = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

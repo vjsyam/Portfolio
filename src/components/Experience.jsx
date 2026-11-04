@@ -2,7 +2,6 @@ import React from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { motion } from 'framer-motion';
 import 'react-vertical-timeline-component/style.min.css';
-import Footer from './Footer';
 import skcet from '../components/skcet.jpeg'
 import bmhss from '../components/bmhss.jpeg'
 
@@ -37,8 +36,9 @@ const Experience = () => {
   return (
     <div className='bg-transparent w-full min-h-screen text-white pt-20 overflow-hidden' id='experience'>
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         className='max-w-7xl mx-auto px-6 sm:px-16'
       >
@@ -89,7 +89,6 @@ const Experience = () => {
           ))}
         </VerticalTimeline>
       </div>
-      <Footer />
     </div>
   );
 }
