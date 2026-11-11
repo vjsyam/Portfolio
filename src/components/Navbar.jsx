@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RESUME_URL = 'https://drive.google.com/file/d/1AAXJj82OoefRiBr_4q2hdKu4Dhw7aN9V/view?usp=sharing';
+const RESUME_URL = 'https://drive.google.com/file/d/1yGxhSgvDOJkjfYIw30X5TMwGCpRu1Q8l/view?usp=drive_link';
 
 const navLinks = [
   { id: "home", title: "Home" },
